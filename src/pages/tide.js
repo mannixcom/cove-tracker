@@ -25,8 +25,9 @@ export default function Home({ todaysTides, currentTide }) {
 }
 
 export async function getStaticProps() {
-  const lat = 60.936;
-  const lng = 5.114;
+
+  const lat = 52.13909351325254;
+  const lng = -7.015760733094569;
 
   const response = await fetch(
     `https://api.stormglass.io/v2/tide/extremes/point?lat=${lat}&lng=${lng}&start=2023-06-20&end=2023-06-29`,
