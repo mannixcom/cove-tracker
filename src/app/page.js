@@ -5,7 +5,7 @@ export default function Home() {
 const latitude = 52.13909351325254;
 const longitude = -7.015760733094569;
 const apiKey = process.env.GMAPAPI;
-const googleMapsUrl = `https://www.google.com/maps/embed/v1/view?key=${apiKey}&center=${latitude},${longitude}&zoom=16`;
+const googleMapsUrl = `https://www.openstreetmap.org/export/embed.html?bbox=${longitude-0.01}%2C${latitude-0.01}%2C${longitude+0.01}%2C${latitude+0.01}&layer=mapnik&marker=${latitude}%2C${longitude}`;
 
 return (
   <main className="flex min-h-screen flex-col items-center p-24">
