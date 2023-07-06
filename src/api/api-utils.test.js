@@ -1,4 +1,4 @@
-import { fetchTides } from "./api-utils";
+const apiUtils = require("./api-utils");
 
 jest.mock('./api-utils', () => ({
   fetchTides: jest.fn(),
@@ -9,7 +9,7 @@ it('returns the expected data', async () => {
     data: [{ height: 2, time: new Date().toISOString(), type: 'high' }],
   };
 
-  fetchTides.mockImplementation(() => Promise.resolve(mockData));
+  apiUtils.fetchTides.mockImplementation(() => Promise.resolve(mockData));
 
   const lat = 52.13909351325254;
   const lng = -7.015760733094569;
@@ -18,14 +18,14 @@ it('returns the expected data', async () => {
   end.setDate(end.getDate() + 1);
   end = end.toISOString();
 
-  const result = await fetchTides(lat, lng, start, end);
+  const result = await apiUtils.fetchTides(lat, lng, start, end);
   expect(result).toEqual(mockData);
 });
 
 // Test for API error
 it('throws an error when the API call fails', async () => {
   const errorMessage = 'API call failed';
-  fetchTides.mockImplementation(() => Promise.reject(new Error(errorMessage)));
+  apiUtils.fetchTides.mockImplementation(() => Promise.reject(new Error(errorMessage)));
 
   const lat = 52.13909351325254;
   const lng = -7.015760733094569;
@@ -34,5 +34,5 @@ it('throws an error when the API call fails', async () => {
   end.setDate(end.getDate() + 1);
   end = end.toISOString();
 
-  await expect(fetchTides(lat, lng, start, end)).rejects.toThrow(errorMessage);
+  await expect(apiUtils.fetchTides(lat, lng, start, end)).rejects.toThrow(errorMessage);
 });
