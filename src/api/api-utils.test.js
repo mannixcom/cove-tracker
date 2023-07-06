@@ -13,12 +13,9 @@ it('returns the expected data', async () => {
 
   const lat = 52.13909351325254;
   const lng = -7.015760733094569;
-  const start = new Date().toISOString();
-  let end = new Date();
-  end.setDate(end.getDate() + 1);
-  end = end.toISOString();
 
-  const result = await apiUtils.fetchTides(lat, lng, start, end);
+
+  const result = await apiUtils.fetchTides(lat, lng);
   expect(result).toEqual(mockData);
 });
 
@@ -29,10 +26,6 @@ it('throws an error when the API call fails', async () => {
 
   const lat = 52.13909351325254;
   const lng = -7.015760733094569;
-  const start = new Date().toISOString();
-  let end = new Date();
-  end.setDate(end.getDate() + 1);
-  end = end.toISOString();
 
-  await expect(apiUtils.fetchTides(lat, lng, start, end)).rejects.toThrow(errorMessage);
+  await expect(apiUtils.fetchTides(lat, lng)).rejects.toThrow(errorMessage);
 });

@@ -23,7 +23,7 @@ return (
       <iframe 
         width="600" 
         height="450" 
-        frameborder="0" 
+        frameBorder="0" 
         style={{border: 0}} 
         src={googleMapsUrl} 
         allowfullscreen=""

@@ -1,11 +1,7 @@
-export async function fetchTides(lat, lng, start, end) {
+export async function fetchTides(lat, lng) {
+  const start = new Date().toISOString().split("T")[0];
   const response = await fetch(
-    `https://api.stormglass.io/v2/tide/extremes/point?lat=${lat}&lng=${lng}&start=${start}&end=${end}`,
-    {
-      headers: {
-        Authorization: process.env.TIDEAPI,
-      },
-    }
+    `https://www.worldtides.info/api/v3?heights&extremes&date=${start}&lat=${lat}&lon=${lng}&days=7&key=${process.env.WORLDTIDEAPI}` 
   );
   if(!response.ok){
     const message = `An error has occured: ${response.status}`

@@ -10,7 +10,7 @@ export default function Home({ todaysTides }) {
         {todaysTides.map((tide, index) => (
           <p key={index}>
             Height: {tide.height}, Time:{" "}
-            {format(new Date(tide.time), "h:mm:ss a")}, Type: {tide.type}
+            {format(new Date(tide.date), "h:mm:ss a")}
           </p>
         ))}
       </div>
@@ -21,25 +21,21 @@ export default function Home({ todaysTides }) {
 export async function getStaticProps() {
   const lat = 52.13909351325254;
   const lng = -7.015760733094569;
-  const start = new Date().toISOString();
-  let end = new Date();
-  end.setDate(end.getDate() + 1);
-  end = end.toISOString();
 
-  const response = await fetchTides(lat, lng, start, end)
+  const response = await fetchTides(lat, lng)
 
-  const todaysTides = response.data.filter((tide) => {
+  const todaysTides = response.heights.filter((tide) => {
     // Modify this to match your timezone and formatting requirements
     const today = new Date().toISOString().split("T")[0];
-    return tide.time.startsWith(today);
+    return tide.date.startsWith(today);
   });
-
+  console.log(todaysTides)
 
 
   return {
     props: {
       todaysTides,
     },
-    revalidate: 4 * 60 * 60, // Revalidate every 4 hours
+    revalidate: 12 * 60 * 60, // Revalidate every 12 hours
   };
 }
