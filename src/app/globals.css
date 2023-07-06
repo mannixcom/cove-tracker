@@ -25,3 +25,40 @@ body {
     )
     rgb(var(--background-start-rgb));
 }
+
+.tide-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.tide-table th,
+.tide-table td {
+  padding: 8px;
+  text-align: left;
+}
+
+.tide-table th {
+  background-color: #f0f0f0;
+  font-weight: bold;
+}
+
+.tide-table tbody tr:nth-child(even) {
+  background-color: #f8f8f8;
+}
+
+.tide-table td {
+  vertical-align: middle;
+}
+
+.tide-table td.high-tide {
+  color: green;
+}
+
+.tide-table td.low-tide {
+  color: red;
+}
+
+.tide-table td.mid-tide {
+  color: orange;
+}
+

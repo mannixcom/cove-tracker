@@ -1,18 +1,14 @@
 import React from "react";
-import { format } from "date-fns";
-import { fetchTides } from "@/api/api-utils";
+import { fetchTides } from "@/api/api-utils"
+import TideChart from "@/components/TideChart";
 
 export default function Home({ todaysTides }) {
+ 
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
       <div>
-        <h2>Tide Information</h2>
-        {todaysTides.map((tide, index) => (
-          <p key={index}>
-            Height: {tide.height}, Time:{" "}
-            {format(new Date(tide.date), "h:mm:ss a")}
-          </p>
-        ))}
+        <h2>Todays Tide Information</h2>
+        <TideChart todaysTides={todaysTides}/>
       </div>
     </main>
   );
@@ -25,12 +21,10 @@ export async function getStaticProps() {
   const response = await fetchTides(lat, lng)
 
   const todaysTides = response.heights.filter((tide) => {
-    // Modify this to match your timezone and formatting requirements
+    // Modify this to match your timezone and formatting requirementsx
     const today = new Date().toISOString().split("T")[0];
     return tide.date.startsWith(today);
   });
-  console.log(todaysTides)
-
 
   return {
     props: {

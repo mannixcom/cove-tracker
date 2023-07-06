@@ -14,7 +14,6 @@ it('returns the expected data', async () => {
   const lat = 52.13909351325254;
   const lng = -7.015760733094569;
 
-
   const result = await apiUtils.fetchTides(lat, lng);
   expect(result).toEqual(mockData);
 });
