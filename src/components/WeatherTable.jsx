@@ -12,12 +12,9 @@ const WeatherTable = ({ weatherData }) => {
           <th>Cloud Cover (SG)</th>
           <th>Precipitation (SG)</th>
           <th>Pressure (SG)</th>
-          <th>Pressure (SG)</th>
-          <th>Swell Period (SG)</th>
           <th>Swell Period (SG)</th>
           <th>Water Temperature (SG)</th>
           <th>Wave Direction (SG)</th>
-          <th>Wave Height (sg)</th>
           <th>Wave Height (SG)</th>
           <th>Wind Direction (SG)</th>
           <th>Wind Speed (SG)</th>
@@ -31,13 +28,10 @@ const WeatherTable = ({ weatherData }) => {
             <td>{data.weather.airTemperature.sg}</td>
             <td>{data.weather.cloudCover.sg}</td>
             <td>{data.weather.precipitation.sg}</td>
-            <td>{data.weather.precipitation.sg}</td>
             <td>{data.weather.pressure.sg}</td>
-            <td>{data.weather.swellPeriod.sg}</td>
             <td>{data.weather.swellPeriod.sg}</td>
             <td>{data.weather.waterTemperature.sg}</td>
             <td>{data.weather.waveDirection.sg}</td>
-            <td>{data.weather.waveHeight.sg}</td>
             <td>{data.weather.waveHeight.sg}</td>
             <td>{data.weather.windDirection.sg}</td>
             <td>{data.weather.windSpeed.sg}</td>
