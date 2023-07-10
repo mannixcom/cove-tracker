@@ -39,27 +39,16 @@ export async function fetchCombinedWeatherTide() {
   const tideData = await fetchTides(lat, lng);
 
   function reduceToHour(tidePerHalfHour) {
-    const tidePerHour = tidePerHalfHour.reduce((acc, curr, i, src) => {
-      if (i % 2 !== 0) {
-        let prev = src[i - 1];
-        let avgHeight = (prev.height + curr.height) / 2;
-
-        acc.push({
-          dt: prev.dt,
-          date: dayjs(prev.date).format("YYYY-MM-DDTHH:mmZ[Z]"),
-          height: avgHeight,
-        });
-      }
-      return acc;
-    }, []);
+    const tidePerHour = tidePerHalfHour.filter((tide, i) => i % 2 === 0)
     return tidePerHour;
   }
   const tidePerHour = reduceToHour(tideData.heights);
   const weatherPerHour = await fetchWeather(lat, lng);
 
   let tideDataMap = new Map(
-    tidePerHour.map((item) => [item.date, item.height])
+    tidePerHour.map((item) => [dayjs(item.date).format("YYYY-MM-DDTHH:mmZ[Z]"), item.height])
   );
+
   let combinedWeather = [];
   for (let weatherItem of weatherPerHour.hours) {
     let weatherTime = dayjs(weatherItem.time).format("YYYY-MM-DDTHH:mmZ[Z]");
@@ -72,5 +61,6 @@ export async function fetchCombinedWeatherTide() {
       });
     }
   }
+  
   return combinedWeather;
 }
