@@ -19,8 +19,8 @@ const TidePlot = ({allTides}) => {
       time: decimalTime,
       dayIndex: dateObj.getDay(), 
       date: daysOfWeek[dateObj.getDay()],
-      height: d.height,
-      size: Math.abs(d.height * 10),
+      height: d.tide,
+      size: Math.abs(d.tide * 10),
     }
   });
 

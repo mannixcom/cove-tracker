@@ -24,7 +24,7 @@ const TideChart = ({ todaysTides }) => {
       <YAxis />
       <Tooltip />
       <Legend />
-      <Area type="monotone" dataKey="height" stroke="#8884d8" fill="#8884d8" />
+      <Area type="monotone" dataKey="tide" stroke="#8884d8" fill="#8884d8" />
     </AreaChart>
   );
 };
