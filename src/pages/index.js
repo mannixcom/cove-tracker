@@ -1,15 +1,9 @@
 import React from "react";
 import { fetchTides, fetchWeather, fetchCombinedWeatherTide } from "@/api/api-utils"
 import TideChart from "@/components/TideChart";
-import WeatherTable from "@/components/WeatherTable";
 import CurrentWeatherContainer from "@/components/currentWeather/CurrentWeatherContainer";
 import { Typography, Box } from "@mui/material";
 
-import dynamic from "next/dynamic";
-
-const MyMatrix = dynamic(() => import("../components/Matrix"), {
-  ssr: false,  // This line will ensure the component is only rendered client-side.
-});
 
 const Home = ({todaysWeather, allWeather, todaysTides }) => {
 
