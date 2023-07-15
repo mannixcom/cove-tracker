@@ -5,9 +5,9 @@ import { Box } from "@mui/material";
 const CurrentWeatherContainer = ({ todaysTide, todaysWeather }) => {
   return (
     <>
-      <Box sx={{ marginTop: 5}}>
+      {/* <Box sx={{ marginTop: 5}}>
         <CurrentTide todaysTide={todaysTide} />
-      </Box>
+      </Box> */}
 
       <Box sx={{ marginTop: 5}}>
         <CurrentTemp todaysWeather={todaysWeather} />

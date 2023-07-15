@@ -1,0 +1,57 @@
+[
+  {
+      "name": "Test Technology",
+      "y": 2693,
+      "rank": 1
+  },
+  {
+      "name": "Industrials",
+      "y": 1660,
+      "rank": 2
+  },
+  {
+      "name": "Consumer Discretionary",
+      "y": 1201,
+      "rank": 3
+  },
+  {
+      "name": "Health Care",
+      "y": 1198,
+      "rank": 4
+  },
+  {
+      "name": "Communication Services",
+      "y": 845,
+      "rank": 5
+  },
+  {
+      "name": "Financials",
+      "y": 679,
+      "rank": 6
+  },
+  {
+      "name": "Real Estate",
+      "y": 509,
+      "rank": 7
+  },
+  {
+      "name": "Materials",
+      "y": 487,
+      "rank": 8
+  },
+  {
+      "name": "Consumer Staples",
+      "y": 442,
+      "rank": 9
+  },
+  {
+      "name": "Utilities",
+      "y": 172,
+      "rank": 10
+  },
+  {
+      "name": "Energy",
+      "y": 133,
+      "rank": 11
+  }
+]

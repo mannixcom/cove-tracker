@@ -16,6 +16,13 @@
   }
 }
 
+.background {
+  background-image: url('/images/portally.jpg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+
 body {
   color: rgb(var(--foreground-rgb));
   background: linear-gradient(

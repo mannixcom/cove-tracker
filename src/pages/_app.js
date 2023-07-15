@@ -4,12 +4,21 @@ import { ThemeProvider, createTheme } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
 import { CacheProvider, EmotionCache } from "@emotion/react";
 import createEmotionCache from "../utils/createEmotionCache";
+import { amber, blueGrey } from '@mui/material/colors'
 
 // Client-side cache, shared for the whole session of the user in the browser.
 const clientSideEmotionCache = createEmotionCache();
 
-// later we'll modify this to its own file
-const theme = createTheme();
+const theme = createTheme({
+  palette: {
+      primary: {
+          main: blueGrey[100],
+      },
+      secondary: {
+          main: amber[400],
+      },
+  },
+});
 
 
 export default function MyApp(props) {

@@ -15,11 +15,11 @@ const CurrentTemp = ({todaysWeather}) => {
     console.log(closestWeather)
   return(
     <Box sx={{textAlign: "center"}}>
-      <Typography variant="h3">Weather Right Now</Typography>
-      <Typography>Air Temp {closestWeather.weather.airTemperature.sg} C</Typography>
-      <Typography>Water Temp {closestWeather.weather.waterTemperature.sg} C</Typography>
-      <Typography>Cloud Cover {closestWeather.weather.cloudCover.sg} %</Typography>
-      <Typography>Wave Height {closestWeather.weather.waveHeight.sg} M</Typography>
+      <Typography variant="h3" color='primary'>Weather Right Now</Typography>
+      <Typography color='secondary'>Air Temp {closestWeather.weather.airTemperature.sg} C</Typography>
+      <Typography color='secondary'>Water Temp {closestWeather.weather.waterTemperature.sg} C</Typography>
+      <Typography color='secondary'>Cloud Cover {closestWeather.weather.cloudCover.sg} %</Typography>
+      <Typography color='secondary'>Wave Height {closestWeather.weather.waveHeight.sg} M</Typography>
 
 
     </Box>

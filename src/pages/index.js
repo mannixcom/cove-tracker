@@ -3,23 +3,44 @@ import { fetchTides, fetchWeather, fetchCombinedWeatherTide } from "@/api/api-ut
 import TideChart from "@/components/TideChart";
 import CurrentWeatherContainer from "@/components/currentWeather/CurrentWeatherContainer";
 import { Typography, Box } from "@mui/material";
-
+import BarChart from "@/components/VegaExample";
+import Image from "next/image";
 
 const Home = ({todaysWeather, allWeather, todaysTides }) => {
 
   return (
     <div>
-     <div>
-        <>
-        <CurrentWeatherContainer todaysTide={todaysTides} todaysWeather={todaysWeather}/>
-        </>
-        <Box sx={{justifyContent: 'center', display: 'flex', marginTop: 5}}>
-        <Typography variant="h4">Todays Tide Information</Typography>
-        </Box>
-        
-        <Box sx={{justifyContent: 'center', display: 'flex'}}>
-        <TideChart todaysTides={todaysWeather}/>
-        </Box>
+     <div style={{ 
+      position: 'relative',
+      height: '100vh', 
+      width: '100%',
+      '::before': {
+        content: '""',
+        position: 'absolute',
+        top: 0,
+        left: 0,
+        height: '100%',
+        width: '100%',
+        backgroundColor: 'rgba(0,0,0, 1)', // Adjust opacity as needed
+        zIndex: 2
+      }
+      }}>
+      {/* <Image 
+      objectFit="cover"
+      layout="fill"
+      src="/images/portally2.jpg"
+      alt="background image"
+      style={{ position: 'absolute', zIndex: 1 }}
+      /> */}
+       <div style={{ position: 'relative', zIndex: 3 }}>
+          <CurrentWeatherContainer todaysTide={todaysTides} todaysWeather={todaysWeather} />
+          <Box sx={{justifyContent: 'center', display: 'flex', marginTop: 5}}>
+            <Typography variant="h4">Todays Tide</Typography>
+          </Box>
+          <Box sx={{justifyContent: 'center', display: 'flex'}}>
+            <TideChart todaysTides={todaysWeather}/>
+          </Box>
+        </div>
        
       </div>
     </div>
