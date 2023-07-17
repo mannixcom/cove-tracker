@@ -1,69 +1,70 @@
-import React from "react";
-import {
-  AreaChart,
-  Area,
-  XAxis,
-  YAxis,
-  CartesianGrid,
-  Tooltip,
-  Legend,
-  ResponsiveContainer,
-} from "recharts";
-import format from "date-fns/format";
-import { Box, Typography, useMediaQuery } from "@mui/material";
-import { useTheme } from "@mui/material";
+import React from 'react';
+import dynamic from 'next/dynamic';
+import { useTheme } from '@mui/material';
+import format from 'date-fns/format';
+import { Box } from "@mui/material";
 
-const customTickFormatter = (tick) => {
-  const currentDate = new Date();
-  const tickDate = new Date(tick);
-
-  // Check if the tick date is the same as the current date
-  if (tickDate.getDate() === currentDate.getDate()) {
-    // Format the tick value as time (h a) if it's the current date
-    return format(tickDate, "h a");
-  } else {
-    // Return an empty string for other dates
-    return "";
-  }
-};
-const CustomizedAxisTick = ({ x, y, payload, vertical }) => {
-  const tickDate = new Date(payload.value);
-  const formattedTick = format(tickDate, "h a");
-  return (
-    <g transform={`translate(${x},${y})`}>
-      <text
-        x={0}
-        y={0}
-        dy={16}
-        textAnchor="end"
-        fill="#666"
-        transform={vertical ? "rotate(-90)" : ""}
-      >
-        {formattedTick}
-      </text>
-    </g>
-  );
-};
-
-const CustomTooltip = ({ active, payload }) => {
-  if (active && payload && payload.length) {
-    const tickDate = new Date(payload[0].payload.date);
-    const formattedTick = format(tickDate, "h a");
-
-    return (
-      <Box className="custom-tooltip">
-        <Typography className="label">{`Time: ${formattedTick}`}{`  Tide: ${payload[0].value}`}</Typography>
-      </Box>
-    );
-  }
-
-  return null;
-};
-
+const DynamicReactApexChart = dynamic(() => import('react-apexcharts'), {
+  ssr: false,
+});
 
 const TideChart = ({ todaysTides }) => {
   const theme = useTheme();
-  const matches = useMediaQuery(theme.breakpoints.up('sm'));
+
+  const series = [{
+    name: 'tide',
+    data: todaysTides.map(({ date, tide }) => ({
+      x: new Date(date).getTime(),
+      y: tide,
+    })),
+  }];
+
+  const minTide = Math.min(...todaysTides.map(tide => tide.tide)) - 0.2;
+  const maxTide = Math.max(...todaysTides.map(tide => tide.tide)) + 0.2;
+
+  const options = {
+    chart: {
+      height: 350,
+      type: 'area',
+      toolbar: {
+        show: false,
+      },
+    },
+    dataLabels: {
+      enabled: false
+    },
+    colors: [theme.palette.secondary.main],
+    xaxis: {
+      type: 'datetime',
+      labels: {
+        formatter: function(val) {
+          const currentDate = new Date();
+          const tickDate = new Date(val);
+          // Check if the tick date is the same as the current date
+          if (tickDate.getDate() === currentDate.getDate()) {
+            // Format the tick value as time (h a) if it's the current date
+            return format(tickDate, "h a");
+          } else {
+            // Return an empty string for other dates
+            return "";
+          }
+        },
+      },
+    },
+    yaxis: {
+      min: minTide,
+      max: maxTide,
+      labels: {
+        formatter: function (val) {
+          return val.toFixed(1);
+        }
+      }
+    },
+    stroke: {
+      curve: 'smooth'
+    },
+  };
+
   return (
     <Box
       sx={{
@@ -73,25 +74,14 @@ const TideChart = ({ todaysTides }) => {
         width:{xs: '95vw'}
       }}
     >
- 
-        <ResponsiveContainer width="100%" height="100%">
-          <AreaChart data={todaysTides}>
-            <CartesianGrid strokeDasharray="3 3" />
-            <XAxis dataKey="date" tickFormatter={customTickFormatter} tick={<CustomizedAxisTick vertical={!matches} />}  />
-            {matches && <YAxis />}
-            <Tooltip content={<CustomTooltip />} />
-            <Legend />
-            <Area
-              type="monotone"
-              dataKey="tide"
-              stroke={theme.palette.secondary.main}
-              fill={theme.palette.secondary.main}
-            />
-          </AreaChart>
-        </ResponsiveContainer>
-
+      <DynamicReactApexChart 
+        options={options} 
+        series={series} 
+        type="area" 
+        height={350} 
+      />
     </Box>
   );
-};
+}
 
 export default TideChart;
