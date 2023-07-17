@@ -70,7 +70,7 @@ const TideChart = ({ todaysTides }) => {
         backgroundColor: theme.palette.background.paper,
         padding: "40px 0",
         height: { xs: '50vh', sm: '60vh', md: '70vh' },
-        width: { xs: '50vh', sm: '60vh', md: '70vh' },
+        width:{xs: '95vw'}
       }}
     >
  

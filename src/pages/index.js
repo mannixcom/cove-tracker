@@ -5,8 +5,14 @@ import CurrentWeatherContainer from "@/components/currentWeather/CurrentWeatherC
 import { Typography, Box } from "@mui/material";
 import BarChart from "@/components/VegaExample";
 import Image from "next/image";
+import dynamic from "next/dynamic";
+import HeatmapChart from "@/components/HeatMap";
+// const HeatmapComponent = dynamic(() => import('../components/HeatMap'),
+// { ssr: false }
+// )
 
-const Home = ({todaysWeather, allWeather, todaysTides }) => {
+
+const Home = ({todaysWeather, allWeather, todaysTides, data }) => {
 
   return (
     <div>
@@ -40,6 +46,9 @@ const Home = ({todaysWeather, allWeather, todaysTides }) => {
           <Box sx={{justifyContent: 'center', display: 'flex'}}>
             <TideChart todaysTides={todaysWeather}/>
           </Box>
+          <Box className="mannix" style={{height: "500px"}}>
+            <HeatmapChart allWeather={todaysWeather}/>
+          </Box>
         </div>
        
       </div>
@@ -68,10 +77,7 @@ export async function getStaticProps() {
     return tide.date.startsWith(today)
   })
 
-  // console.log(todaysWeather)
-
   const allWeather = response;
-
 
   return {
     props: {

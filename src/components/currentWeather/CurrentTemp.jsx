@@ -12,7 +12,6 @@ const CurrentTemp = ({todaysWeather}) => {
     }, todaysWeather[0])}
 
     const closestWeather = closest(todaysWeather)
-    console.log(closestWeather)
   return(
     <Box sx={{textAlign: "center"}}>
       <Typography variant="h3" color='primary'>Weather Right Now</Typography>
