@@ -41,9 +41,6 @@ const HeatmapChart = ({ allWeather }) => {
         },
       },
     },
-    title: {
-      text: "HeatMap Chart",
-    },
   };
 
   return (
