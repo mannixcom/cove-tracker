@@ -3,6 +3,7 @@ import dynamic from "next/dynamic";
 import { useTheme } from "@mui/material";
 import { generateActivityRatings } from "@/api/cove-rating";
 import { format } from "date-fns";
+import {Box} from "@mui/material";
 
 const DynamicReactApexChart = dynamic(() => import("react-apexcharts"), {
   ssr: false,
@@ -44,14 +45,14 @@ const HeatmapChart = ({ allWeather }) => {
   };
 
   return (
-    <div id="chart">
+    <Box className="chart-container" sx={{backgroundColor: 'white', borderRadius: '20px'}}>
       <DynamicReactApexChart
         options={options}
         series={activityRatings}
         type="heatmap"
         height={350}
       />
-    </div>
+    </Box>
   );
 };
 

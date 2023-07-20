@@ -1,5 +1,12 @@
 import { Typography, Box } from "@mui/material";
 import React from "react";
+import Table from '@mui/material/Table';
+import TableBody from '@mui/material/TableBody';
+import TableCell from '@mui/material/TableCell';
+import TableContainer from '@mui/material/TableContainer';
+import TableRow from '@mui/material/TableRow';
+import Paper from '@mui/material/Paper';
+
 
 const CurrentTemp = ({todaysWeather}) => {
 
@@ -13,16 +20,48 @@ const CurrentTemp = ({todaysWeather}) => {
 
     const closestWeather = closest(todaysWeather)
   return(
-    <Box sx={{textAlign: "center"}}>
-      <Typography variant="h3" color='primary'>Weather Right Now</Typography>
-      <Typography color='secondary'>Air Temp {closestWeather.weather.airTemperature.sg} C</Typography>
-      <Typography color='secondary'>Water Temp {closestWeather.weather.waterTemperature.sg} C</Typography>
-      <Typography color='secondary'>Cloud Cover {closestWeather.weather.cloudCover.sg} %</Typography>
-      <Typography color='secondary'>Wave Height {closestWeather.weather.waveHeight.sg} M</Typography>
-
-
-    </Box>
+    <TableContainer component={Paper} sx={{ width: 300 }}>
+    <Table  aria-label="simple table">
+      <TableBody>
+          <TableRow >
+          <TableCell component="th" scope="row">
+            <Typography variant="h3"  sx={{ fontWeight: 'bold' }}>
+              Air Temperature
+              </Typography>
+            </TableCell>
+            <TableCell align="right"><Typography  variant="h3"> {closestWeather.weather.airTemperature.sg} C</Typography></TableCell>
+            </TableRow>
+            <TableRow> 
+            <TableCell component="th" scope="row">
+            <Typography variant="h3"  sx={{ fontWeight: 'bold' }}>
+              Water Temperature
+              </Typography>
+            </TableCell>
+            <TableCell align="right"><Typography  variant="h3">{closestWeather.weather.waterTemperature.sg} C</Typography></TableCell>
+            </TableRow>
+            <TableRow>
+            <TableCell component="th" scope="row">
+            <Typography variant="h3"  sx={{ fontWeight: 'bold' }}>
+              Cloud Cover
+              </Typography>
+            </TableCell>
+            <TableCell align="right"><Typography  variant="h3">{closestWeather.weather.cloudCover.sg} %</Typography></TableCell>
+            </TableRow>
+            <TableRow>
+            <TableCell component="th" scope="row">
+            <Typography variant="h3"  sx={{ fontWeight: 'bold' }}>
+              Wave Height
+              </Typography>
+            </TableCell>
+            <TableCell align="right"><Typography variant="h3"> {closestWeather.weather.waveHeight.sg} M</Typography></TableCell>
+            </TableRow>
+      </TableBody>
+    </Table>
+  </TableContainer>
+  
   )
 };
 
 export default CurrentTemp
+
+

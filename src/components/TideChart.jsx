@@ -67,11 +67,13 @@ const TideChart = ({ todaysTides }) => {
 
   return (
     <Box
+    className="chart-container"
       sx={{
         backgroundColor: theme.palette.background.paper,
-        padding: "40px 0",
-        height: { xs: '50vh', sm: '60vh', md: '70vh' },
-        width:{xs: '95vw'}
+        // padding: "40px 0",
+        height: '100%',
+        width:{xs: '90vw'},
+        borderRadius: '20px'
       }}
     >
       <DynamicReactApexChart 
