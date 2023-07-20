@@ -13,14 +13,14 @@ const Home = ({todaysWeather, allWeather, todaysTides, data }) => {
 
   return (
   
-       <Container sx={{backgroundColor: '#F7F9F9'}}>
+       <Container sx={{backgroundColor: '#F7F9F9'}} xs={12}>
           <ArrowDropDownCircleIcon fontSize="large" sx={{marginTop: 1}}/>
           <TileBox />
           <CurrentWeatherContainer todaysTide={todaysTides} todaysWeather={todaysWeather} />
           <Box sx={{justifyContent: 'left', display: 'flex', marginTop: 5, marginBottom: 1}}>
             <Typography variant="h4">{"TODAY'S TIDE"}</Typography>
           </Box>
-          <Box className="charts-page" xs={12}>
+          <Box className="charts-page" >
             <TideChart todaysTides={todaysWeather}/>
           </Box>
           <Box sx={{justifyContent: 'left',  marginTop: 5, marginBottom: 1}}>

@@ -67,9 +67,7 @@ const TideChart = ({ todaysTides }) => {
     className="chart-container"
       sx={{
         backgroundColor: theme.palette.background.paper,
-        // padding: "40px 0",
         height: '100%',
-        width:{xs: '90vw'},
         borderRadius: '20px'
       }}
     >
