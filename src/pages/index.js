@@ -12,8 +12,8 @@ import ArrowDropDownCircleIcon from '@mui/icons-material/ArrowDropDownCircle';
 const Home = ({todaysWeather, allWeather, todaysTides, data }) => {
 
   return (
-  
-       <Container sx={{backgroundColor: '#F7F9F9'}} xs={12}>
+    <Box sx={{backgroundColor: '#F7F9F9'}} >
+       <Container >
           <ArrowDropDownCircleIcon fontSize="large" sx={{marginTop: 1}}/>
           <TileBox />
           <CurrentWeatherContainer todaysTide={todaysTides} todaysWeather={todaysWeather} />
@@ -30,6 +30,7 @@ const Home = ({todaysWeather, allWeather, todaysTides, data }) => {
             <HeatmapChart allWeather={todaysWeather}/>
           </Box>
         </Container>
+        </Box>
   );
 };
 
