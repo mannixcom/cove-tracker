@@ -20,7 +20,7 @@ const CurrentTemp = ({todaysWeather}) => {
 
     const closestWeather = closest(todaysWeather)
   return(
-    <TableContainer component={Paper} sx={{ width: 300 }}>
+    <TableContainer component={Paper} sx={{ maxWidth: 400 }}>
     <Table  aria-label="simple table">
       <TableBody>
           <TableRow >
