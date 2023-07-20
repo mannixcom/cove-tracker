@@ -40,12 +40,9 @@ const TideChart = ({ todaysTides }) => {
         formatter: function(val) {
           const currentDate = new Date();
           const tickDate = new Date(val);
-          // Check if the tick date is the same as the current date
           if (tickDate.getDate() === currentDate.getDate()) {
-            // Format the tick value as time (h a) if it's the current date
-            return format(tickDate, "h a");
+            return format(tickDate, "HH");
           } else {
-            // Return an empty string for other dates
             return "";
           }
         },

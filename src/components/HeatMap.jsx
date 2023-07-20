@@ -3,7 +3,7 @@ import dynamic from "next/dynamic";
 import { useTheme } from "@mui/material";
 import { generateActivityRatings } from "@/api/cove-rating";
 import { format } from "date-fns";
-import {Box} from "@mui/material";
+import {Box, Typography} from "@mui/material";
 
 const DynamicReactApexChart = dynamic(() => import("react-apexcharts"), {
   ssr: false,
@@ -12,9 +12,20 @@ const DynamicReactApexChart = dynamic(() => import("react-apexcharts"), {
 const HeatmapChart = ({ allWeather }) => {
   const theme = useTheme();
   const activityRatings = generateActivityRatings(allWeather);
+  function formatSeries(series) {
+    return series.map(item => {
+      if (item.name.length > 8) {
+        return { ...item, name: item.name.split(' ') };
+      }
+      return item;
+    });
+  }
+
+  const finalData = formatSeries(activityRatings);
 
   const options = {
     chart: {
+      id: 'myHeatmapChart',
       height: 350,
       type: "heatmap",
       toolbar: {
@@ -31,12 +42,9 @@ const HeatmapChart = ({ allWeather }) => {
         formatter: function (val) {
           const currentDate = new Date();
           const tickDate = new Date(val);
-          // Check if the tick date is the same as the current date
           if (tickDate.getDate() === currentDate.getDate()) {
-            // Format the tick value as time (h a) if it's the current date
-            return format(tickDate, "h a");
+            return format(tickDate, "HH");
           } else {
-            // Return an empty string for other dates
             return "";
           }
         },
@@ -45,14 +53,40 @@ const HeatmapChart = ({ allWeather }) => {
   };
 
   return (
-    <Box className="chart-container" sx={{backgroundColor: 'white', borderRadius: '20px'}}>
+ 
+    <Box className="chart-container" 
+    sx={{
+        backgroundColor: 'white', 
+        borderRadius: '20px',
+        '& .apexcharts-yaxis': {
+            maxWidth: '60px',
+            whiteSpace: 'normal',
+            overflowWrap: 'break-word'
+          }
+        }}>
       <DynamicReactApexChart
         options={options}
-        series={activityRatings}
+        series={finalData}
         type="heatmap"
         height={350}
       />
+        <Box sx={{ display: 'flex', justifyContent: 'center', padding: '20px' }}>
+      <Box sx={{ display: 'flex', alignItems: 'center', marginRight: '30px' }}>
+        <Box sx={{ width: '20px', height: '20px', borderRadius: '20px', backgroundColor: '#FCEEBD', marginRight: '10px' }} />
+        <Typography>Not Great</Typography>
+      </Box>
+      <Box sx={{ display: 'flex', alignItems: 'center', marginRight: '30px' }}>
+        <Box sx={{ width: '20px', height: '20px', borderRadius: '20px', backgroundColor: '#F9DD80', marginRight: '10px' }} />
+        <Typography>Good</Typography>
+      </Box>
+      <Box sx={{ display: 'flex', alignItems: 'center', marginRight: '30px' }}>
+        <Box sx={{ width: '20px', height: '20px', borderRadius: '20px', backgroundColor: '#F7CC4F', marginRight: '10px' }} />
+        <Typography>Ideal</Typography>
+      </Box>
     </Box>
+    </Box>
+
+
   );
 };
 

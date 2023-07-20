@@ -1,6 +1,5 @@
 import React from "react";
 import { Typography, Box, Grid } from "@mui/material";
-import { roboto, prompt } from "@/app/fonts";
 
 const TileBox =() => {
 
