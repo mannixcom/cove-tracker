@@ -18,7 +18,7 @@ const Home = ({todaysWeather, allWeather, todaysTides, data }) => {
           <TileBox />
           <CurrentWeatherContainer todaysTide={todaysTides} todaysWeather={todaysWeather} />
           <Box sx={{justifyContent: 'left', display: 'flex', marginTop: 5, marginBottom: 1}}>
-            <Typography variant="h4">TODAY'S TIDE</Typography>
+            <Typography variant="h4">{"TODAY'S TIDE"}</Typography>
           </Box>
           <Box className="charts-page" xs={12}>
             <TideChart todaysTides={todaysWeather}/>

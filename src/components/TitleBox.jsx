@@ -23,7 +23,7 @@ const TileBox =() => {
         <Box>
           <Typography variant="h1">Portally Cove</Typography></Box>
         <Box>
-          <Typography variant="subtitle1">Today's Tide Tracking</Typography></Box>
+          <Typography variant="subtitle1">{"Today's Tide Tracking"}</Typography></Box>
       </Grid>
     </Grid>
   )
