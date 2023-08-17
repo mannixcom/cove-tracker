@@ -26,9 +26,9 @@ const Home = ({todaysWeather, allWeather, todaysTides, data }) => {
           <Box sx={{justifyContent: 'left',  marginTop: 5, marginBottom: 1}}>
             <Typography variant="h4">TIDE BASED ACTIVITY</Typography>
           </Box>
-          {/* <Box className="charts-page" style={{height: "500px"}}>
+          <Box className="charts-page" style={{height: "500px"}}>
             <HeatmapChart allWeather={todaysWeather}/>
-          </Box> */}
+          </Box>
         </Container>
         </Box>
   );
