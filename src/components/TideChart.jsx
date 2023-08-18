@@ -4,11 +4,11 @@ import { useTheme } from '@mui/material';
 import format from 'date-fns/format';
 import { Box } from "@mui/material";
 
-const DynamicReactApexChart = dynamic(() => import('react-apexcharts'), {
+const DynamicReactApexChartTide = dynamic(() => import('react-apexcharts'), {
   ssr: false,
 });
 
-const TideChart = ({ todaysTides }) => {
+const TideChart = ({ todaysTides, currentDate }) => {
   const theme = useTheme();
 
   const series = [{
@@ -38,9 +38,8 @@ const TideChart = ({ todaysTides }) => {
       type: 'datetime',
       labels: {
         formatter: function(val) {
-          const currentDate = new Date();
           const tickDate = new Date(val);
-          if (tickDate.getDate() === currentDate.getDate()) {
+          if (tickDate.toDateString() === new Date(currentDate).toDateString()) {
             return format(tickDate, "HH");
           } else {
             return "";
@@ -71,7 +70,7 @@ const TideChart = ({ todaysTides }) => {
         borderRadius: '20px'
       }}
     >
-      <DynamicReactApexChart 
+      <DynamicReactApexChartTide 
         options={options} 
         series={series} 
         type="area" 

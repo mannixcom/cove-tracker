@@ -40,7 +40,7 @@ export async function fetchCombinedWeatherTide() {
   const tideData = await fetchTides(lat, lng);
 
   function reduceToHour(tidePerHalfHour) {
-    const tidePerHour = tidePerHalfHour.filter((tide, i) => i % 2 === 0)
+    const tidePerHour = tidePerHalfHour.filter((_, i) => i % 2 === 0)
     return tidePerHour;
   }
   const tidePerHour = reduceToHour(tideData.heights);

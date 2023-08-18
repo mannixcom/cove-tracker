@@ -8,10 +8,10 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 
 
-const CurrentTemp = ({todaysWeather}) => {
+const CurrentTemp = ({todaysWeather, currentDate}) => {
 
-  const closest = (todaysWeather) => { 
-    const now = new Date();
+  const closest = (todaysWeather, currentDate) => { 
+    const now = new Date(currentDate);
     return todaysWeather.reduce((closest, current) => {
       const currentDiff = Math.abs(new Date(current.date) - now);
       const closestDiff = Math.abs(new Date(closest.date) - now);

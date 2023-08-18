@@ -9,7 +9,7 @@ const DynamicReactApexChart = dynamic(() => import("react-apexcharts"), {
   ssr: false,
 });
 
-const HeatmapChart = ({ allWeather }) => {
+const HeatmapChart = ({ allWeather, currentDate }) => {
   const theme = useTheme();
   const activityRatings = generateActivityRatings(allWeather);
   function formatSeries(series) {
@@ -40,9 +40,8 @@ const HeatmapChart = ({ allWeather }) => {
       type: "category",
       labels: {
         formatter: function (val) {
-          const currentDate = new Date();
           const tickDate = new Date(val);
-          if (tickDate.getDate() === currentDate.getDate()) {
+          if (tickDate.toDateString() === new Date(currentDate).toDateString()) {
             return format(tickDate, "HH");
           } else {
             return "";
