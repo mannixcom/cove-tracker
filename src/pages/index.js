@@ -39,7 +39,7 @@ export default Home;
 export async function getStaticProps() {
 
   const mockOrNOt = process.env.USE_MOCK_API ? 'http://localhost:3000/api/weather' :  fetchCombinedWeatherTide();
-
+  console.log(await fetch(mockOrNOt).then(response => response.json()))
   const response = await fetch(mockOrNOt).then(response => response.json())
 
   const todaysWeather = response.filter((weather) => {
