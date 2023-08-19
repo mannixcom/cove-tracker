@@ -1,9 +1,10 @@
 import dayjs from "dayjs";
+import { today } from "../utils/date";
 
 export async function fetchTides(lat, lng) {
-  const start = new Date().toISOString().split("T")[0];
+  const startDate = today;
   const response = await fetch(
-    `https://www.worldtides.info/api/v3?heights&extremes&date=${start}&lat=${lat}&lon=${lng}&days=7&key=${process.env.WORLDTIDEAPI}`
+    `${process.env.TIDE_API_BASE}?heights&date=${startDate}&lat=${lat}&lon=${lng}&days=7&key=${process.env.WORLDTIDEAPI}`
   );
 
   if (!response.ok) {
@@ -20,9 +21,10 @@ export async function fetchTides(lat, lng) {
 }
 
 export async function fetchWeather(lat, lng) {
-  const params = "waveHeight,airTemperature,airTemperature,pressure,cloudCover,precipitation,waveDirection,waveHeight,swellPeriod,waterTemperature,windDirection,windSpeed";
+  const params =
+    "waveHeight,airTemperature,airTemperature,pressure,cloudCover,precipitation,waveDirection,waveHeight,swellPeriod,waterTemperature,windDirection,windSpeed";
   const response = await fetch(
-    `https://api.stormglass.io/v2/weather/point?lat=${lat}&lng=${lng}&params=${params}`,
+    `${process.env.WEATHER_API_BASE}?lat=${lat}&lng=${lng}&params=${params}`,
     {
       headers: {
         Authorization: process.env.TIDEAPI,
@@ -40,14 +42,18 @@ export async function fetchCombinedWeatherTide() {
   const tideData = await fetchTides(lat, lng);
 
   function reduceToHour(tidePerHalfHour) {
-    const tidePerHour = tidePerHalfHour.filter((_, i) => i % 2 === 0)
+    const tidePerHour = tidePerHalfHour.filter((_, i) => i % 2 === 0);
     return tidePerHour;
   }
+
   const tidePerHour = reduceToHour(tideData.heights);
   const weatherPerHour = await fetchWeather(lat, lng);
 
   let tideDataMap = new Map(
-    tidePerHour.map((item) => [dayjs(item.date).format("YYYY-MM-DDTHH:mmZ[Z]"), item.height])
+    tidePerHour.map((item) => [
+      dayjs(item.date).format("YYYY-MM-DDTHH:mmZ[Z]"),
+      item.height,
+    ])
   );
 
   let combinedWeather = [];
@@ -62,6 +68,6 @@ export async function fetchCombinedWeatherTide() {
       });
     }
   }
-  
+
   return combinedWeather;
 }
