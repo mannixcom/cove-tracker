@@ -1,10 +1,11 @@
 import dayjs from "dayjs";
 import { today } from "../utils/date";
+import { env } from "process";
 
 export async function fetchTides(lat, lng) {
   const startDate = today;
   const response = await fetch(
-    `${process.env.TIDE_API_BASE}?heights&date=${startDate}&lat=${lat}&lon=${lng}&days=7&key=${process.env.WORLDTIDEAPI}`
+    `${env.TIDE_API_BASE}?heights&date=${startDate}&lat=${lat}&lon=${lng}&days=7&key=${env.WORLDTIDEAPI}`
   );
 
   if (!response.ok) {
@@ -24,10 +25,10 @@ export async function fetchWeather(lat, lng) {
   const params =
     "waveHeight,airTemperature,airTemperature,pressure,cloudCover,precipitation,waveDirection,waveHeight,swellPeriod,waterTemperature,windDirection,windSpeed";
   const response = await fetch(
-    `${process.env.WEATHER_API_BASE}?lat=${lat}&lng=${lng}&params=${params}`,
+    `${env.WEATHER_API_BASE}?lat=${lat}&lng=${lng}&params=${params}`,
     {
       headers: {
-        Authorization: process.env.TIDEAPI,
+        Authorization: env.TIDEAPI,
       },
     }
   ).then((response) => response.json());
