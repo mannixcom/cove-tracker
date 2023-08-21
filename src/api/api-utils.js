@@ -1,9 +1,11 @@
 import dayjs from "dayjs";
+import {env} from 'process';
+import {today} from '../utils/date';
 
 export async function fetchTides(lat, lng) {
-  const start = new Date().toISOString().split("T")[0];
+  const start = today;
   const response = await fetch(
-    `https://www.worldtides.info/api/v3?heights&extremes&date=${start}&lat=${lat}&lon=${lng}&days=7&key=${process.env.WORLDTIDEAPI}`
+    `${env.TIDE_API_BASE}?heights&extremes&date=${start}&lat=${lat}&lon=${lng}&days=7&key=${process.env.WORLDTIDEAPI}`
   );
 
   if (!response.ok) {
@@ -22,10 +24,10 @@ export async function fetchTides(lat, lng) {
 export async function fetchWeather(lat, lng) {
   const params = "waveHeight,airTemperature,airTemperature,pressure,cloudCover,precipitation,waveDirection,waveHeight,swellPeriod,waterTemperature,windDirection,windSpeed";
   const response = await fetch(
-    `https://api.stormglass.io/v2/weather/point?lat=${lat}&lng=${lng}&params=${params}`,
+    `${env.WEATHER_API_BASE}?lat=${lat}&lng=${lng}&params=${params}`,
     {
       headers: {
-        Authorization: process.env.TIDEAPI,
+        Authorization: env.TIDEAPI,
       },
     }
   ).then((response) => response.json());
@@ -40,7 +42,7 @@ export async function fetchCombinedWeatherTide() {
   const tideData = await fetchTides(lat, lng);
 
   function reduceToHour(tidePerHalfHour) {
-    const tidePerHour = tidePerHalfHour.filter((_, i) => i % 2 === 0)
+    const tidePerHour = tidePerHalfHour.filter((_, i) => i % 2 === 0);
     return tidePerHour;
   }
   const tidePerHour = reduceToHour(tideData.heights);

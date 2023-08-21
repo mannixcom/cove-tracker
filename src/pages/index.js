@@ -1,5 +1,5 @@
 import React from "react";
-import { fetchCombinedWeatherTide } from "@/api/api-utils"
+import { fetchCombinedWeatherTide } from "@/api/api-utils";
 import TideChart from "@/components/TideChart";
 import CurrentWeatherContainer from "@/components/currentWeather/CurrentWeatherContainer";
 import { Typography, Box, Container } from "@mui/material";
@@ -37,8 +37,6 @@ const Home = ({todaysWeather, currentDate }) => {
 export default Home;
 
 export async function getStaticProps() {
-
-  const mockOrNOt = process.env.USE_MOCK_API ? 'http://localhost:3000/api/weather' :  fetchCombinedWeatherTide();
 
   const response = await fetchCombinedWeatherTide();
 
