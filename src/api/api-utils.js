@@ -1,11 +1,11 @@
 import dayjs from "dayjs";
-import {env} from 'process';
-import {today} from '../utils/date';
+import { env } from "process";
+import { today } from "../utils/date";
 
 export async function fetchTides(lat, lng) {
   const start = today;
   const response = await fetch(
-    `${env.TIDE_API_BASE}?heights&extremes&date=${start}&lat=${lat}&lon=${lng}&days=7&key=${process.env.WORLDTIDEAPI}`
+    `${env.TIDE_API_BASE}?heights&extremes&date=${start}&lat=${lat}&lon=${lng}&days=7&key=${env.TIDE_API_KEY}`
   );
 
   if (!response.ok) {
@@ -22,12 +22,13 @@ export async function fetchTides(lat, lng) {
 }
 
 export async function fetchWeather(lat, lng) {
-  const params = "waveHeight,airTemperature,airTemperature,pressure,cloudCover,precipitation,waveDirection,waveHeight,swellPeriod,waterTemperature,windDirection,windSpeed";
+  const params =
+    "waveHeight,airTemperature,airTemperature,pressure,cloudCover,precipitation,waveDirection,waveHeight,swellPeriod,waterTemperature,windDirection,windSpeed";
   const response = await fetch(
     `${env.WEATHER_API_BASE}?lat=${lat}&lng=${lng}&params=${params}`,
     {
       headers: {
-        Authorization: env.TIDEAPI,
+        Authorization: env.WEATHER_API_KEY,
       },
     }
   ).then((response) => response.json());
@@ -49,7 +50,10 @@ export async function fetchCombinedWeatherTide() {
   const weatherPerHour = await fetchWeather(lat, lng);
 
   let tideDataMap = new Map(
-    tidePerHour.map((item) => [dayjs(item.date).format("YYYY-MM-DDTHH:mmZ[Z]"), item.height])
+    tidePerHour.map((item) => [
+      dayjs(item.date).format("YYYY-MM-DDTHH:mmZ[Z]"),
+      item.height,
+    ])
   );
 
   let combinedWeather = [];
@@ -64,6 +68,6 @@ export async function fetchCombinedWeatherTide() {
       });
     }
   }
-  
+
   return combinedWeather;
 }
