@@ -229,9 +229,6 @@ export const BarChart = () => {
             }
         ]
     }
-
-
-
     return (
         <>
             <Vega spec={spec} actions={false}  />
