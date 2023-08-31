@@ -2,7 +2,11 @@ import React from "react";
 import { render, act } from "@testing-library/react";
 import TideChart from "./TideChart";
 
-jest.mock('react-apexcharts', () => () => <div>MockedChart</div>);
+jest.mock('react-apexcharts', () => {
+  const MockedChart = () => <div>MockedChart</div>;
+  MockedChart.displayName = 'MockedChart';
+  return MockedChart;
+});
 
 describe('TideChart',  () => {
   it('renders without errors', async () => {
