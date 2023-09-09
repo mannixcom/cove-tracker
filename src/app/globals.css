@@ -1,0 +1,118 @@
+html {
+  box-sizing: border-box;
+}
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+div > * {
+  border: "2px solid black";
+}
+
+:root {
+  --bluegrey: #cfd8dc;
+  --amber: "#ffca28";
+
+  /* Typography */
+  --h1-font-family: "Prompt", sans-serif; 
+  --h1-font-weight: 700;
+  --h1-line-height: 40px;
+
+  --subtitle1-font-family: "Prompt", sans-serif;
+  --subtitle1-font-weight: 700;
+  --subtitle1-font-size: var(--base-size);
+  --subtitle1-line-height: 40px;
+  --subtitle1-color: #0074b7;
+
+  --h3-font-family: "Roboto", sans-serif;
+  --h3-font-weight: 400;
+  --h3-line-height: 2px;
+  --h3-color: #666;
+
+  --h4-font-family: "Roboto", sans-serif;
+  --h4-font-weight: 400;
+  --h4-line-height: 15px;
+  --h4-color: #666;
+
+  --body1-font-family: "Roboto", sans-serif;
+
+  --caption-font-family: "Prompt", sans-serif;
+
+  /* Your existing variables */
+  --base-size: 1rem;
+  --scale: 1.25;
+  --h1-font-size: calc(var(--h2) * var(--scale));
+  --h2-font-size: calc(var(--h3) * var(--scale));
+  --h3-font-size: calc(var(--h4) * var(--scale));
+  --h4-font-size: calc(var(--base-size) * var(--scale));
+}
+h1 {
+  font-family: var(--h1-font-family);
+  font-weight: var(--h1-font-weight);
+  font-size: var(--h1-font-size);
+  line-height: var(--h1-line-height);
+}
+h2 {
+  font-family: var(--h2-font-family);
+  font-weight: var(--h2-font-weight);
+  font-size: var(--h2-font-size);
+  line-height: var(--h2-line-height);
+}
+h3 {
+  font-family: var(--h3-font-family);
+  font-weight: var(--h3-font-weight);
+  font-size: var(--h3-font-size);
+  line-height: var(--h3-line-height);
+}
+h4 {
+  font-family: var(--h4-font-family);
+  font-weight: var(--h4-font-weight);
+  font-size: var(--h4-font-size);
+  line-height: var(--h4-line-height);
+}
+body1 {
+  font-family: var(--body1-font-family);
+  font-weight: var(--body1-font-weight);
+  font-size: var(--body1-font-size);
+  line-height: var(--body1-line-height);
+}
+captionfont {
+  font-family: var(--captionfont-font-family);
+  font-weight: var(--captionfont-font-weight);
+  font-size: var(--captionfont-font-size);
+  line-height: var(--captionfont-line-height);
+}
+subtitle1 {
+  font-family: var(--subtile1-font-family);
+  font-weight: var(--subtile1-font-weight);
+  font-size: var(--subtile1-font-size);
+  line-height: var(--subtile1-line-height);
+}
+
+.heatmap-container {
+  background-color: white;
+  border-radius: 20px;
+  .apexcharts-yaxis {
+    max-width: 60px;
+    white-space: normal;
+   overflow-wrap: break-word;
+  }
+}
+.heatmap-legend-box {
+  display: flex;
+  justify-content: center;
+  padding: 20px;
+}
+.heatmap-legend-item {
+  display: flex;
+  align-items: center;
+  margin-right: 30px;
+}
+.heatmap-legend-circle {
+  width: 20px;
+  height: 20px;
+  border-radius: 20px;
+  margin-right: 10px;
+}

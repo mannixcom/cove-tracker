@@ -2,7 +2,7 @@ import React from 'react';
 import dynamic from 'next/dynamic';
 import { useTheme } from '@mui/material';
 import format from 'date-fns/format';
-import { Box } from "@mui/material";
+
 
 const DynamicReactApexChartTide = dynamic(() => import('react-apexcharts'), {
   ssr: false,
@@ -62,10 +62,10 @@ const TideChart = ({ todaysTides, currentDate }) => {
   };
 
   return (
-    <Box
+    <div
     className="chart-container"
-      sx={{
-        backgroundColor: theme.palette.background.paper,
+      style={{
+        backgroundColor: 'white',
         height: '100%',
         borderRadius: '20px'
       }}
@@ -76,7 +76,7 @@ const TideChart = ({ todaysTides, currentDate }) => {
         type="area" 
         height={350} 
       />
-    </Box>
+    </div>
   );
 }
 

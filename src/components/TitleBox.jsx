@@ -1,31 +1,31 @@
 import React from "react";
-import { Typography, Box, Grid } from "@mui/material";
 
-const TileBox =() => {
+const TileBox = () => {
+  const style = {
+    background: "#0074B7",
+    height: "75px",
+    width: "10px",
+    borderRadius: "20px",
+    marginRight: "10px",
+    // border: "2px solid black"
+  };
 
-  return(
-    <Grid container>
-      <Grid 
-      item
- 
-      sx={{
-        background:"#0074B7",
-        height: '75px',
-        width: '10px',
-        borderRadius: '20px',
-        marginRight: '10px'
-      }} 
-      ></Grid>
-      <Grid 
-      item
-      >
-        <Box>
-          <Typography variant="h1">Portally Cove</Typography></Box>
-        <Box>
-          <Typography variant="subtitle1">{"Today's Tide Tracking"}</Typography></Box>
-      </Grid>
-    </Grid>
-  )
-}
+  return (
+    <div
+      style={{
+        display: "flex",
+        // border: "2px solid black"
+      }}
+    >
+      <div style={style}></div>
+        <div style={{
+          justifyItems: 'flex-end'
+        }}>
+          <div>Portally Cove</div>
+          <div>{"Today's Tide Tracking"}</div>
+        </div>
+    </div>
+  );
+};
 
 export default TileBox;
