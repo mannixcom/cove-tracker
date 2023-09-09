@@ -7,9 +7,6 @@ html {
   box-sizing: inherit;
 }
 
-div > * {
-  border: "2px solid black";
-}
 
 :root {
   --bluegrey: #cfd8dc;
@@ -94,12 +91,12 @@ subtitle1 {
 .heatmap-container {
   background-color: white;
   border-radius: 20px;
-  .apexcharts-yaxis {
+}
+.apexcharts-yaxis {
     max-width: 60px;
     white-space: normal;
    overflow-wrap: break-word;
   }
-}
 .heatmap-legend-box {
   display: flex;
   justify-content: center;
