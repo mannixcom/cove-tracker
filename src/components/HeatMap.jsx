@@ -34,7 +34,7 @@ const HeatmapChart = ({ allWeather, currentDate }) => {
     dataLabels: {
       enabled: false,
     },
-    colors: [theme.palette.secondary.main],
+    colors: ['#F7CC4F'],
     xaxis: {
       type: "category",
       labels: {

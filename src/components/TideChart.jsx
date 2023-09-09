@@ -33,7 +33,7 @@ const TideChart = ({ todaysTides, currentDate }) => {
     dataLabels: {
       enabled: false
     },
-    colors: [theme.palette.secondary.main],
+    colors: ['#F7CC4F'],
     xaxis: {
       type: 'datetime',
       labels: {
