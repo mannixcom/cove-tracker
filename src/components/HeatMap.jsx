@@ -1,6 +1,5 @@
 import React from "react";
 import dynamic from "next/dynamic";
-import { useTheme } from "@mui/material";
 import { generateActivityRatings } from "@/api/cove-rating";
 import { format } from "date-fns";
 
@@ -9,7 +8,6 @@ const DynamicReactApexChart = dynamic(() => import("react-apexcharts"), {
 });
 
 const HeatmapChart = ({ allWeather, currentDate }) => {
-  const theme = useTheme();
   const activityRatings = generateActivityRatings(allWeather);
   function formatSeries(series) {
     return series.map((item) => {

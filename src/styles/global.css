@@ -7,43 +7,60 @@ html {
   box-sizing: inherit;
 }
 
-
 :root {
   --bluegrey: #cfd8dc;
-  --amber: #F7CC4F;
+  --amber: #f7cc4f;
+
+  /* Variables for font sizes */
+  --base-size: 1rem;
+  --scale: 1.25;
 
   /* Typography */
-  --h1-font-family: "Prompt", sans-serif; 
+  --h1-font-family: "Prompt", sans-serif;
+  --h1-font-size: calc(var(--h2-font-size) * var(--scale));
   --h1-font-weight: 700;
-  --h1-line-height: 40px;
+  --h1-line-height: 1rem;
+
+  --h2-font-family: "Prompt", sans-serif;
+  --h2-font-size: calc(var(--h3-font-size) * var(--scale));
+  --h2-font-weight: 700;
+  --h2-line-height: 1rem;
+  
+  --h3-font-family: "Roboto Serif", sans-serif;
+  --h3-font-size: calc(var(--h4-font-size) * var(--scale));
+  --h3-font-weight: 400;
+  --h3-line-height: 1rem;
+  --h3-color: #666;
+
+  --h4-font-family: "Roboto Serif", sans-serif;
+  --h4-font-size: calc(var(--base-size));
+  --h4-font-weight: 700;
+  --h4-line-height: 1rem;
+  --h4-color: #666;
+
+  --body1-font-family: "Roboto Serif", sans-serif;
+  --body1-font-size: calc(var(--base-size) * 0.9);
+  --body1-font-weight: 700;
+  --body1-line-height: 1rem;
+  --body1-color: #666;
+
+  --caption-font-family: "Prompt", sans-serif;
+  --caption-font-size: calc(var(--base-size) * 0.8);
+  --caption-font-weight: 700;
+  --caption-line-height: 1rem;
+  --caption-color: #666;
 
   --subtitle1-font-family: "Prompt", sans-serif;
   --subtitle1-font-weight: 700;
-  --subtitle1-font-size: var(--base-size);
-  --subtitle1-line-height: 40px;
+  --subtitle1-font-size: calc(var(--base-size) * 1.1);
+  --subtitle1-line-height: 1rem;
   --subtitle1-color: #0074b7;
 
-  --h3-font-family: "Roboto", sans-serif;
-  --h3-font-weight: 400;
-  --h3-line-height: 2px;
-  --h3-color: #666;
 
-  --h4-font-family: "Roboto", sans-serif;
-  --h4-font-weight: 400;
-  --h4-line-height: 15px;
-  --h4-color: #666;
 
-  --body1-font-family: "Roboto", sans-serif;
 
-  --caption-font-family: "Prompt", sans-serif;
 
-  /* Your existing variables */
-  --base-size: 1rem;
-  --scale: 1.25;
-  --h1-font-size: calc(var(--h2) * var(--scale));
-  --h2-font-size: calc(var(--h3) * var(--scale));
-  --h3-font-size: calc(var(--h4) * var(--scale));
-  --h4-font-size: calc(var(--base-size) * var(--scale));
+
 }
 h1 {
   font-family: var(--h1-font-family);
@@ -82,10 +99,10 @@ captionfont {
   line-height: var(--captionfont-line-height);
 }
 subtitle1 {
-  font-family: var(--subtile1-font-family);
-  font-weight: var(--subtile1-font-weight);
-  font-size: var(--subtile1-font-size);
-  line-height: var(--subtile1-line-height);
+  font-family: var(--subtitle1-font-family);
+  font-weight: var(--subtitle1-font-weight);
+  font-size: var(--subtitle1-font-size);
+  line-height: var(--subtitle1-line-height);
 }
 
 .heatmap-container {
@@ -93,10 +110,10 @@ subtitle1 {
   border-radius: 20px;
 }
 .apexcharts-yaxis {
-    max-width: 60px;
-    white-space: normal;
-   overflow-wrap: break-word;
-  }
+  max-width: 60px;
+  white-space: normal;
+  overflow-wrap: break-word;
+}
 .heatmap-legend-box {
   display: flex;
   justify-content: center;

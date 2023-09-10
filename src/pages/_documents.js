@@ -19,6 +19,7 @@ export default function MyDocument() {
     <Html lang="en">
       <Head>
         <link rel="shortcut icon" href="/favicon.ico" />
+        <link href='https://fonts.googleapis.com/css2?family=Prompt:wght@700&family=Roboto+Serif:opsz@8..144&display=swap' rel="stylesheet" />
       </Head>
       <body>
         <>test</>

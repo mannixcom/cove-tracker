@@ -7,22 +7,22 @@ const TileBox = () => {
     width: "10px",
     borderRadius: "20px",
     marginRight: "10px",
-    // border: "2px solid black"
   };
 
   return (
     <div
       style={{
         display: "flex",
-        // border: "2px solid black"
       }}
     >
       <div style={style}></div>
         <div style={{
           justifyItems: 'flex-end'
         }}>
-          <div>Portally Cove</div>
-          <div>{"Today's Tide Tracking"}</div>
+          <h1>Portally Cove</h1>
+          <h4 style={{
+            color: '#0074b7'
+          }}>{"Today's Tide Tracking"}</h4>
         </div>
     </div>
   );
