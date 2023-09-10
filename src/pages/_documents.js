@@ -1,16 +1,10 @@
-// pages/_document.tsx
-import Document, {
+
+import {
   Html,
   Head,
   Main,
   NextScript,
-  DocumentProps,
-  DocumentContext,
 } from "next/document";
-import { AppType } from "next/app";
-import { MyAppProps } from "./_app";
-import createEmotionCache from "../utils/createEmotionCache";
-import createEmotionServer from "@emotion/server/create-instance";
 
 
 
