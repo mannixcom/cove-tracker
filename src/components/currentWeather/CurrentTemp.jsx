@@ -1,67 +1,54 @@
-import { Typography, Box } from "@mui/material";
 import React from "react";
-import Table from '@mui/material/Table';
-import TableBody from '@mui/material/TableBody';
-import TableCell from '@mui/material/TableCell';
-import TableContainer from '@mui/material/TableContainer';
-import TableRow from '@mui/material/TableRow';
-import Paper from '@mui/material/Paper';
 
-
-const CurrentTemp = ({todaysWeather, currentDate}) => {
-
-  const closest = (todaysWeather, currentDate) => { 
+const CurrentTemp = ({ todaysWeather, currentDate }) => {
+  const closest = (todaysWeather, currentDate) => {
     const now = new Date(currentDate);
     return todaysWeather.reduce((closest, current) => {
       const currentDiff = Math.abs(new Date(current.date) - now);
       const closestDiff = Math.abs(new Date(closest.date) - now);
       return currentDiff < closestDiff ? current : closest;
-    }, todaysWeather[0])}
+    }, todaysWeather[0]);
+  };
 
-    const closestWeather = closest(todaysWeather)
-  return(
-    <TableContainer component={Paper} sx={{ maxWidth: 400 }}>
-    <Table  aria-label="simple table">
-      <TableBody>
-          <TableRow >
-          <TableCell component="th" scope="row">
-            <Typography variant="h3"  sx={{ fontWeight: 'bold' }}>
-              Air Temperature
-              </Typography>
-            </TableCell>
-            <TableCell align="right"><Typography  variant="h3"> {closestWeather.weather.airTemperature.sg} C</Typography></TableCell>
-            </TableRow>
-            <TableRow> 
-            <TableCell component="th" scope="row">
-            <Typography variant="h3"  sx={{ fontWeight: 'bold' }}>
-              Water Temperature
-              </Typography>
-            </TableCell>
-            <TableCell align="right"><Typography  variant="h3">{closestWeather.weather.waterTemperature.sg} C</Typography></TableCell>
-            </TableRow>
-            <TableRow>
-            <TableCell component="th" scope="row">
-            <Typography variant="h3"  sx={{ fontWeight: 'bold' }}>
-              Cloud Cover
-              </Typography>
-            </TableCell>
-            <TableCell align="right"><Typography  variant="h3">{closestWeather.weather.cloudCover.sg} %</Typography></TableCell>
-            </TableRow>
-            <TableRow>
-            <TableCell component="th" scope="row">
-            <Typography variant="h3"  sx={{ fontWeight: 'bold' }}>
-              Wave Height
-              </Typography>
-            </TableCell>
-            <TableCell align="right"><Typography variant="h3"> {closestWeather.weather.waveHeight.sg} M</Typography></TableCell>
-            </TableRow>
-      </TableBody>
-    </Table>
-  </TableContainer>
-  
-  )
+  const closestWeather = closest(todaysWeather, currentDate);
+
+  return (
+    <div
+      style={{
+        maxWidth: "400px",
+        border: "1px  solid #e0e0e0",
+        padding: "1rem",
+        overflowX: "auto",
+      }}
+    >
+      <table
+        aria-label="simple table"
+        style={{
+          width: "100%",
+          borderCollapse: "collapse",
+        }}
+      >
+        <tbody>
+          <tr>
+            <th>Air Temperature</th>
+            <td>{closestWeather.weather.airTemperature.sg} C</td>
+          </tr>
+          <tr>
+            <th>Water Temperature</th>
+            <td>{closestWeather.weather.waterTemperature.sg} C</td>
+          </tr>
+          <tr>
+            <th>Cloud Cover</th>
+            <td>{closestWeather.weather.cloudCover.sg} %</td>
+          </tr>
+          <tr>
+            <th>Wave Height</th>
+            <td>{closestWeather.weather.waveHeight.sg} M</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  );
 };
 
-export default CurrentTemp
-
-
+export default CurrentTemp;
