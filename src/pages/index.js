@@ -2,7 +2,6 @@ import React from "react";
 import { fetchCombinedWeatherTide } from "@/api/api-utils";
 import TideChart from "@/components/TideChart";
 import CurrentWeatherContainer from "@/components/currentWeather/CurrentWeatherContainer";
-import { Typography, Box, Container } from "@mui/material";
 import HeatmapChart from "@/components/HeatMap";
 import TileBox from "@/components/TitleBox";
 import ArrowDropDownCircleIcon from '@mui/icons-material/ArrowDropDownCircle';
@@ -12,25 +11,25 @@ import ArrowDropDownCircleIcon from '@mui/icons-material/ArrowDropDownCircle';
 const Home = ({todaysWeather, currentDate }) => {
 
   return (
-    <Box sx={{backgroundColor: '#F7F9F9'}} >
-       <Container >
+    <div style={{backgroundColor: '#F7F9F9'}} >
+       <div style={{margin: '0 auto', maxWidth: '90vw'  }}>
           <ArrowDropDownCircleIcon fontSize="large" sx={{marginTop: 1}}/>
           <TileBox />
           <CurrentWeatherContainer todaysWeather={todaysWeather} currentDate={currentDate}/>
-          <Box sx={{justifyContent: 'left', display: 'flex', marginTop: 5, marginBottom: 1}}>
-            <Typography variant="h4">{"TODAY'S TIDE"}</Typography>
-          </Box>
-          <Box className="charts-page" >
+          <div style={{justifyContent: 'left', display: 'flex', marginTop: 5, marginBottom: 1}}>
+            <h4>{"TODAY'S TIDE"}</h4>
+          </div>
+          <div className="charts-page" >
             <TideChart todaysTides={todaysWeather} currentDate={currentDate}/>
-          </Box>
-          <Box sx={{justifyContent: 'left',  marginTop: 5, marginBottom: 1}}>
-            <Typography variant="h4">TIDE BASED ACTIVITY</Typography>
-          </Box>
-          <Box className="charts-page" style={{height: "500px"}}>
+          </div>
+          <div style={{justifyContent: 'left',  marginTop: 5, marginBottom: 1}}>
+            <h4>TIDE BASED ACTIVITY</h4>
+          </div>
+          <div className="charts-page" style={{height: "500px"}}>
             <HeatmapChart allWeather={todaysWeather} currentDate={currentDate}/>
-          </Box>
-        </Container>
-        </Box>
+          </div>
+        </div>
+        </div>
   );
 };
 
