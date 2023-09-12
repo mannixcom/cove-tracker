@@ -1,6 +1,5 @@
 import React from 'react';
 import dynamic from 'next/dynamic';
-import { useTheme } from '@mui/material';
 import format from 'date-fns/format';
 
 
@@ -9,7 +8,6 @@ const DynamicReactApexChartTide = dynamic(() => import('react-apexcharts'), {
 });
 
 const TideChart = ({ todaysTides, currentDate }) => {
-  const theme = useTheme();
 
   const series = [{
     name: 'tide',

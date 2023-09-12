@@ -1,9 +1,9 @@
 import React from "react";
-import { fetchCombinedWeatherTide } from "@/api/api-utils";
-import TideChart from "@/components/TideChart";
-import CurrentWeatherContainer from "@/components/currentWeather/CurrentWeatherContainer";
-import HeatmapChart from "@/components/HeatMap";
-import TileBox from "@/components/TitleBox";
+import {fetchCombinedWeatherTide} from '../api/api-utils';
+import TideChart from "../components/TideChart";
+import CurrentWeatherContainer from "../components/currentWeather/CurrentWeatherContainer";
+import HeatmapChart from "../components/HeatMap";
+import TileBox from "../components/TitleBox";
 import icon from '../app/icon.png';
 import Image from 'next/image';
 
