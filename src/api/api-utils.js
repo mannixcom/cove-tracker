@@ -1,74 +1,67 @@
-import dayjs from "dayjs";
-import { env } from "process";
-import { today } from "../utils/date";
+import dayjs from 'dayjs';
+import { env } from 'process';
+import { today } from '../utils/date';
 
 export async function fetchTides(lat, lng) {
-  const start = today;
-  const response = await fetch(
-    `${env.TIDE_API_BASE}?heights&extremes&date=${start}&lat=${lat}&lon=${lng}&days=7&key=${env.TIDE_API_KEY}`
-  );
+	const start = today;
+	const response = await fetch(
+		`${env.TIDE_API_BASE}?heights&extremes&date=${start}&lat=${lat}&lon=${lng}&days=7&key=${env.TIDE_API_KEY}`
+	);
 
-  if (!response.ok) {
-    const message = `An error has occured: ${response.status}`;
-    throw new Error(message);
-  }
+	if (!response.ok) {
+		const message = `An error has occured: ${response.status}`;
+		throw new Error(message);
+	}
 
-  const data = await response.json();
-  if (!data || typeof data !== "object") {
-    throw new Error("API data is not in the expected format");
-  }
+	const data = await response.json();
+	if (!data || typeof data !== 'object') {
+		throw new Error('API data is not in the expected format');
+	}
 
-  return data;
+	return data;
 }
 
 export async function fetchWeather(lat, lng) {
-  const params =
-    "waveHeight,airTemperature,airTemperature,pressure,cloudCover,precipitation,waveDirection,waveHeight,swellPeriod,waterTemperature,windDirection,windSpeed";
-  const response = await fetch(
-    `${env.WEATHER_API_BASE}?lat=${lat}&lng=${lng}&params=${params}`,
-    {
-      headers: {
-        Authorization: env.WEATHER_API_KEY,
-      },
-    }
-  ).then((response) => response.json());
+	const params =
+		'waveHeight,airTemperature,airTemperature,pressure,cloudCover,precipitation,waveDirection,waveHeight,swellPeriod,waterTemperature,windDirection,windSpeed';
+	const response = await fetch(`${env.WEATHER_API_BASE}?lat=${lat}&lng=${lng}&params=${params}`, {
+		headers: {
+			Authorization: env.WEATHER_API_KEY,
+		},
+	}).then((response) => response.json());
 
-  return response;
+	return response;
 }
 
 export async function fetchCombinedWeatherTide() {
-  const lat = 52.13909351325254;
-  const lng = -7.015760733094569;
+	const lat = 52.13909351325254;
+	const lng = -7.015760733094569;
 
-  const tideData = await fetchTides(lat, lng);
+	const tideData = await fetchTides(lat, lng);
 
-  function reduceToHour(tidePerHalfHour) {
-    const tidePerHour = tidePerHalfHour.filter((_, i) => i % 2 === 0);
-    return tidePerHour;
-  }
-  const tidePerHour = reduceToHour(tideData.heights);
-  const weatherPerHour = await fetchWeather(lat, lng);
+	function reduceToHour(tidePerHalfHour) {
+		const tidePerHour = tidePerHalfHour.filter((_, i) => i % 2 === 0);
+		return tidePerHour;
+	}
+	const tidePerHour = reduceToHour(tideData.heights);
+	const weatherPerHour = await fetchWeather(lat, lng);
 
-  let tideDataMap = new Map(
-    tidePerHour.map((item) => [
-      dayjs(item.date).format("YYYY-MM-DDTHH:mmZ[Z]"),
-      item.height,
-    ])
-  );
+	let tideDataMap = new Map(
+		tidePerHour.map((item) => [dayjs(item.date).format('YYYY-MM-DDTHH:mmZ[Z]'), item.height])
+	);
 
-  let combinedWeather = [];
-  for (let weatherItem of weatherPerHour.hours) {
-    let weatherTime = dayjs(weatherItem.time).format("YYYY-MM-DDTHH:mmZ[Z]");
-    let tideItem = tideDataMap.get(weatherTime);
-    if (tideItem) {
-      combinedWeather.push({
-        date: weatherItem.time,
-        tide: tideItem,
-        weather: weatherItem,
-      });
-    }
-  }
-  console.log(combinedWeather)
+	let combinedWeather = [];
+	for (let weatherItem of weatherPerHour.hours) {
+		let weatherTime = dayjs(weatherItem.time).format('YYYY-MM-DDTHH:mmZ[Z]');
+		let tideItem = tideDataMap.get(weatherTime);
+		if (tideItem) {
+			combinedWeather.push({
+				date: weatherItem.time,
+				tide: tideItem,
+				weather: weatherItem,
+			});
+		}
+	}
 
-  return combinedWeather;
+	return combinedWeather;
 }
