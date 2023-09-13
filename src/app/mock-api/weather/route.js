@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import response from "./responseExample.json";
-import { today } from "@/utils/date";
+import { today } from "../../../utils/date";
 
 export async function GET() {
   /** @type {WeatherData} */
