@@ -40,7 +40,7 @@ const HeatmapChart = ({ allWeather, currentDate }) => {
           if (
             tickDate.toDateString() === new Date(currentDate).toDateString()
           ) {
-            return getHour(tickDate);
+            return tickDate.getHours();
           } else {
             return "";
           }

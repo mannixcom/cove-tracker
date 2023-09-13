@@ -63,7 +63,5 @@ export async function fetchCombinedWeatherTide() {
       });
     }
   }
-  console.log(combinedWeather)
-
   return combinedWeather;
 }
