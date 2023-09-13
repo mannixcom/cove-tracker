@@ -1,7 +1,6 @@
 import React from "react";
 import dynamic from "next/dynamic";
-import { generateActivityRatings } from "@/api/cove-rating";
-import { getHour } from "@/utils/date";
+import { generateActivityRatings } from "../api/cove-rating";
 
 const DynamicReactApexChart = dynamic(() => import("react-apexcharts"), {
   ssr: false,
