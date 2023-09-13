@@ -1,9 +1,9 @@
-import React from 'react';
-import { format } from 'date-fns';
+import { getDateTime } from "@/utils/date";
+import React from "react";
 
 const WeatherTable = ({ weatherData }) => {
   return (
-    <table className='weather-table' cellPadding={4}>
+    <table className="weather-table" cellPadding={4}>
       <thead>
         <tr>
           <th>Date & Time</th>
@@ -23,7 +23,7 @@ const WeatherTable = ({ weatherData }) => {
       <tbody>
         {weatherData.map((data, i) => (
           <tr key={i}>
-            <td>{format(new Date(data.date), "MMM dd, yyyy HH:mm")}</td>
+            <td>{getDateTime(data.date)}</td>
             <td>{data.tide}</td>
             <td>{data.weather.airTemperature.sg}</td>
             <td>{data.weather.cloudCover.sg}</td>
@@ -39,7 +39,7 @@ const WeatherTable = ({ weatherData }) => {
         ))}
       </tbody>
     </table>
-  )
-}
+  );
+};
 
 export default WeatherTable;
