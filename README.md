@@ -1,6 +1,6 @@
 ### 🌊 Cove Report 🌊
 - 🌐 [Cove Report](https://cove-tracker.vercel.app/)
-- 📝 Living by a cove in the stunning County Waterford, I enjoy nature's spectacle daily. But, as a tech enthusiast, I wanted a tech spin on it! Thus was born *Cove Report* - a Next.js application that keeps me updated with real-time tide 🌊 and weather 🌤️ information right from the comfort of my home. With this project, I brought the outdoors, indoors! 
+- 📝 Living by a cove in the stunning County Waterford, I enjoy nature's beauty daily. But, as a tech enthusiast, I wanted a tech spin on it! Thus was born *Cove Report* - a Next.js application that keeps me updated with real-time tide 🌊 and weather 🌤️ information right from the comfort of my home. With this project, I brought the outdoors, indoors! 
 
 First, run the development server:
 
