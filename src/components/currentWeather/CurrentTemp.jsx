@@ -31,19 +31,19 @@ const CurrentTemp = ({ todaysWeather, currentDate }) => {
         <tbody>
           <tr>
             <th>Air Temperature</th>
-            <td>{closestWeather.weather.airTemperature.sg} C</td>
+            <td>{closestWeather?.weather.airTemperature.sg} C</td>
           </tr>
           <tr>
             <th>Water Temperature</th>
-            <td>{closestWeather.weather.waterTemperature.sg} C</td>
+            <td>{closestWeather?.weather.waterTemperature.sg} C</td>
           </tr>
           <tr>
             <th>Cloud Cover</th>
-            <td>{closestWeather.weather.cloudCover.sg} %</td>
+            <td>{closestWeather?.weather.cloudCover.sg} %</td>
           </tr>
           <tr>
             <th>Wave Height</th>
-            <td>{closestWeather.weather.waveHeight.sg} M</td>
+            <td>{closestWeather?.weather.waveHeight.sg} M</td>
           </tr>
         </tbody>
       </table>

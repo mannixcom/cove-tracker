@@ -1,4 +1,3 @@
-import dayjs from "dayjs";
 import { env } from "process";
 import { today } from "../utils/date";
 
@@ -50,16 +49,12 @@ export async function fetchCombinedWeatherTide() {
   const weatherPerHour = await fetchWeather(lat, lng);
 
   let tideDataMap = new Map(
-    tidePerHour.map((item) => [
-      dayjs(item.date).format("YYYY-MM-DDTHH:mmZ[Z]"),
-      item.height,
-    ])
+    tidePerHour.map((item) => [item.date, item.height])
   );
 
   let combinedWeather = [];
   for (let weatherItem of weatherPerHour.hours) {
-    let weatherTime = dayjs(weatherItem.time).format("YYYY-MM-DDTHH:mmZ[Z]");
-    let tideItem = tideDataMap.get(weatherTime);
+    let tideItem = tideDataMap.get(weatherItem.time);
     if (tideItem) {
       combinedWeather.push({
         date: weatherItem.time,
@@ -68,7 +63,5 @@ export async function fetchCombinedWeatherTide() {
       });
     }
   }
-  console.log(combinedWeather)
-
   return combinedWeather;
 }

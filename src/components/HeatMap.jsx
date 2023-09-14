@@ -1,7 +1,7 @@
 import React from "react";
 import dynamic from "next/dynamic";
 import { generateActivityRatings } from "../api/cove-rating";
-import { format } from "date-fns";
+import { getHour } from "../utils/date";
 
 const DynamicReactApexChart = dynamic(() => import("react-apexcharts"), {
   ssr: false,
@@ -41,7 +41,7 @@ const HeatmapChart = ({ allWeather, currentDate }) => {
           if (
             tickDate.toDateString() === new Date(currentDate).toDateString()
           ) {
-            return format(tickDate, "HH");
+            return getHour(tickDate);
           } else {
             return "";
           }
