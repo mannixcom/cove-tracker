@@ -49,12 +49,16 @@ export async function fetchCombinedWeatherTide() {
   const weatherPerHour = await fetchWeather(lat, lng);
 
   let tideDataMap = new Map(
-    tidePerHour.map((item) => [item.date, item.height])
+    tidePerHour.map((item) => {
+      const tideDate = new Date(item.date).toISOString();
+      return [tideDate, item.height]
+    })
   );
 
   let combinedWeather = [];
   for (let weatherItem of weatherPerHour.hours) {
-    let tideItem = tideDataMap.get(weatherItem.time);
+    const weatherDate = new Date(weatherItem.time).toISOString();
+    let tideItem = tideDataMap.get(weatherDate);
     if (tideItem) {
       combinedWeather.push({
         date: weatherItem.time,
