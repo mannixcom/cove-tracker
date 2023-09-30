@@ -1,0 +1,27 @@
+.topbar {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: flex-start;
+	background-color: #f7f9f9;
+	height: 50px;
+	width: 100%;
+	border-bottom: 1px solid #e5e7e9;
+	position: sticky;
+	top: 0;
+	margin-bottom: 20px;
+
+	h1 {
+		font-size: 20px;
+		font-weight: bold;
+		color: #2c3e50;
+		margin-left: 10px;
+	}
+
+	h2 {
+		color: #2c3e50;
+		margin-left: 10px;
+		font-size: 16px;
+		padding-top: 3px;
+	}
+}
