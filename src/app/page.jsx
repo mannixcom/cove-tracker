@@ -3,22 +3,20 @@ import { fetchCombinedWeatherTide } from '../api/api-utils';
 import TideChart from '../components/TideChart';
 import CurrentWeatherContainer from '../components/currentWeather/CurrentWeatherContainer';
 import HeatmapChart from '../components/HeatMap';
+import ChartTitle from '../components/ChartTitle';
 
 const Page = async () => {
 	const { currentDate, todaysWeather } = await getData();
 
 	return (
 		<div>
+			<ChartTitle title="CURRENT WEATHER" />
 			<CurrentWeatherContainer todaysWeather={todaysWeather} currentDate={currentDate} />
-			<div style={{ justifyContent: 'left', display: 'flex', marginTop: 5, marginBottom: 1 }}>
-				<h4>{"TODAY'S TIDE"}</h4>
-			</div>
+			<ChartTitle title="TODAY'S TIDES" />
 			<div className="charts-page">
 				<TideChart todaysTides={todaysWeather} currentDate={currentDate} />
 			</div>
-			<div style={{ justifyContent: 'left', marginTop: 5, marginBottom: 1 }}>
-				<h4>TIDE BASED ACTIVITY</h4>
-			</div>
+			<ChartTitle title="TIDE BASED ACTIVITY" />
 			<div className="charts-page" style={{ height: '500px' }}>
 				<HeatmapChart allWeather={todaysWeather} currentDate={currentDate} />
 			</div>
